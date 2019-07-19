@@ -148,6 +148,7 @@ let questions = [
 const CORRECT_BONUS = 6.25;
 const MAX_QUESTIONS = 16;
 
+// This functions sets the game at its starting point and dictates where new questions will come from
 startGame = () => {
 	questionCounter = 0;
 	score = 0;
@@ -157,6 +158,7 @@ startGame = () => {
 	// loader.classList.add("hidden");
 };
 
+// This function determines whether or not to display a new question and update the progress bar and if not, directs to the "end" page
 getNewQuestion = () => {
 	if(availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
 		localStorage.setItem("mostRecentScore", score);
@@ -179,6 +181,7 @@ getNewQuestion = () => {
 		acceptingAnswers = true;
 };
 
+// This function checks for a correct answer when an answer is selected and then applies a new class
 choices.forEach(choice => {
 	choice.addEventListener("click", e => {
 		if (!acceptingAnswers) return;
@@ -198,9 +201,11 @@ choices.forEach(choice => {
 	});
 });
 
+// Tells how many points a correct answer will add to the total score
 incrementScore = num => {
 	score += num;
 	scoreText.innerText = score;
 }
 
+// This function activates the game/quiz
 startGame();
